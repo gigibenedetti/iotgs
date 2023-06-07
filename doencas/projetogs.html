@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Agricultura de Precisão</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .text-box {
+            display: none;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: auto;
+            margin: 3;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+            background-image: url("plantas.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="mx-auto m-3 bg-secondary p-2 text-light container">
+        <h1 class="text-center">Relatório de Agricultura de Precisão</h1>
+        
+        <h2 class="text-center">Definição do Problema</h2>
+        <p class="text-center">O problema específico na agricultura de precisão que pode ser resolvido através do uso da visão computacional e do processamento de imagem é a detecção e diagnóstico preciso de doenças nas plantas com base em análise visual de imagens.</p>
+        
+        <h2 class="text-center">Metodologia</h2>
+        <p class="m-2">A metodologia adotada para implementar a solução envolveu o desenvolvimento de três códigos Python separados, cada um direcionado a um tipo específico de colheita. <br>
+            Esses códigos foram criados com o objetivo de identificar a presença de diferentes tipos de doenças nas plantas, utilizando técnicas de processamento de imagem e visão computacional. <br>
+
+            O primeiro código foi desenvolvido para a colheita de bananeiras e tem como objetivo localizar a presença do fungo Sigatoka. <br>
+            Utilizando técnicas de processamento de imagem, o código analisa imagens das folhas de bananeiras em busca de características visuais do fungo, permitindo a identificação precisa da doença. <br>
+            
+            O segundo código foi direcionado à colheita de soja e visa localizar o fungo Mancha-Alvo. Da mesma forma que o código anterior, utiliza técnicas de processamento de imagem para analisar imagens das folhas de soja e identificar padrões característicos da presença do fungo. <br>
+            
+            Por fim, o terceiro código foi desenvolvido para ser utilizado em diversas colheitas, buscando a presença do fungo Ferrugem. <br>Essa abordagem abrange diferentes culturas agrícolas, permitindo identificar a doença em plantações variadas. <br>Também se utiliza de técnicas de processamento de imagem para realizar a análise das imagens capturadas. <br>
+            
+            Esses códigos foram implementados com base em algoritmos de visão computacional e técnicas de processamento de imagem, como detecção de padrões, segmentação de imagens e extração de características. Essas técnicas possibilitam a identificação precisa das doenças nas plantas, auxiliando os agricultores no monitoramento e controle eficiente das infecções. <br>
+            
+            A utilização desses códigos permite uma abordagem mais eficiente e precisa no diagnóstico de doenças nas plantas, facilitando a tomada de decisão por parte dos agricultores e contribuindo para uma agricultura de precisão mais efetiva.</p>
+        
+            <button class="btn btn-primary" id="toggle-button1" onclick="toggleText(1)">Sigatoka</button>
+            <button class="btn btn-primary" id="toggle-button2" onclick="toggleText(2)">Ferrugem</button>
+            <button class="btn btn-primary" id="toggle-button3" onclick="toggleText(3)">Mancha-Alvo</button>            
+            
+            <div id="text-box1" class="text-box mt-3 p-3 bg-light text-dark">
+                <p name="Sigatoka" class="m-3 fw-bold fs-2">Sigatoka</p>
+                <blockquote> O primeiro código foi desenvolvido para a colheita de bananeiras e tem como objetivo localizar a presença do fungo Sigatoka. 
+                    Utilizando técnicas de processamento de imagem, o código analisa imagens das folhas de bananeiras em busca de características visuais do fungo, permitindo a identificação precisa da doença.</blockquote>
+                    <p class="m-3 fw-bold fs-5">Como foi construído e por que utilizamos essas técnicas?</p>
+                    <blockquote>Começamos o código com um loop para processar continuamente os quadros do vídeo ou câmera.</blockquote>
+                    <cite>
+                        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) - Essa linha de código faz a conversão do espaço de cor do quadro BGR (Azul, Verde, Vermelho) para HSV (Matiz, Saturação, Valor).<br>
+                        Isso permite uma representação mais conveniente para trabalhar com cores.<br>
+                        Após isso definimos as faixas de cores para os sintomas da doença Sigatoka, mostrado na lista no relatório gerado pelo sigatoka.py.<br>
+                        Criamos máscaras para filtrar os sintomas da Sigatoka utilizando as faixas de cores definidas.<br>
+                        Cada máscara é obtida aplicando a função cv2.inRange() para definir os pixels que estão dentro das faixas de cores desejadas.<br>
+                        Combinamos as máscaras individuais utilizando a função cv2.bitwise_or() para obter a máscara final.<br>
+                        Essa máscara contem todos os pixels que correspondem a qualquer um dos sintomas da Sigatoka.<br>
+                        Com a finalidade de melhorar a qualidade e consistência da máscara, aplicamos operações morfológicas na máscara final utilizamos a função cv2.morphologyEx()
+                        com um kernel elíptico para preencher pequenas lacunas e suavizar as bordas dos objetos detectados.
+                        Após aplicarmos as técnicas de processamento de imagem, agora é feito os contornos na máscara final cv2.findContours().<br>
+                        Assim, obtemos a detecção da doença Sigatoka nas colheitas de bananeiras.
+                    </cite>
+                    <p class="m-3 fw-bold fs-5">Resumo</p>
+                    <blockquote>Essas são as principais etapas do código, que envolvem a captura de quadros, conversão para o espaço de cores HSV, criação de máscaras, detecção de contornos, desenho dos contornos no quadro, exibição do resultado, cálculo da quantidade e tamanho das doenças, geração do relatório HTML e encerramento do programa.</blockquote>    
+            </div>
+            
+            <div id="text-box2" class="m-3 text-box mt-3 p-3 bg-light text-dark">
+                <p name="Ferrugem" class="m-3 fw-bold fs-2">Ferrugem</p>
+                <blockquote> O primeiro código foi desenvolvido para a colheitas em geral e tem como objetivo localizar a presença do fungo Ferrugem. 
+                Utilizando técnicas de processamento de imagem, o código analisa imagens das folhas em busca de características visuais do fungo, permitindo a identificação precisa da doença.</blockquote>
+                <p class="m-3 fw-bold fs-5">Como foi construído e por que utilizamos essas técnicas?</p>
+                <blockquote>Começamos o código com um loop para processar continuamente os quadros do vídeo ou câmera.</blockquote>
+                <cite>
+                    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) - Essa linha de código faz a conversão do espaço de cor do quadro BGR (Azul, Verde, Vermelho) para HSV (Matiz, Saturação, Valor), facilitando o processamento de cores.<br>
+                    Após isso definimos as faixas de cores para os sintomas da doença Ferrugem, mostrado no relatório gerado pelo ferrugem.py.<br>
+                    lower_brown = np.array([5, 50, 50]) e upper_brown = np.array([30, 255, 255]): define a faixa de cores marrom para identificar a ferrugem.<br>
+                    lower_light_orange = np.array([10, 50, 50]) e upper_light_orange = np.array([30, 255, 255]): define a faixa de cores laranja claro para identificar a ferrugem.<br>
+                    Após definirmos as faixas de cor, agora criamos as máscaras: <br>
+                    mask_brown = cv2.inRange(hsv, lower_brown, upper_brown): cria uma máscara binária que retém apenas os pixels que estão dentro da faixa de cores marrom.<br>
+                    mask_light_orange = cv2.inRange(hsv, lower_light_orange, upper_light_orange): cria uma máscara binária que retém apenas os pixels que estão dentro da faixa de cores laranja claro.<br>
+                    Após isso, combinamos as duas máscaras criadas:<br>
+                    mask = cv2.bitwise_or(mask_brown, mask_light_orange): combina as duas máscaras usando uma operação bitwise OR para obter uma máscara final que retém os pixels que possuem as cores de marrom ou laranja claro.<br>
+                    Em busca de tornar nossa detecção mais precisa ainda, aplicamos operações morfológicas para melhorar a máscara: <br>
+                    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5)): cria um kernel em forma de elipse com tamanho 5x5.<br>
+                    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel): aplica a operação de fechamento morfológico na máscara para preencher buracos e eliminar ruídos.<br>
+                    Após isso encontramos os contornos na máscara e desenhamos o contorno:<br>
+                    epsilon = 0.03 * cv2.arcLength(contour, True): calcula a precisão da aproximação do contorno com base em um percentual da circunferência do contorno.<br>
+                    approx = cv2.approxPolyDP(contour, epsilon, True): realiza uma aproximação poligonal no contorno original com base na precisão definida.<br>
+                    Assim, obtemos a detecção da doença Ferrugem.<br>
+                </cite>
+                <p class="m-3 fw-bold fs-5">Resumo</p>
+                <blockquote>Essas são as principais etapas do código, que envolvem a captura de quadros, conversão para o espaço de cores HSV, criação de máscaras, detecção de contornos, desenho dos contornos no quadro, exibição do resultado, cálculo da quantidade e tamanho das doenças, geração do relatório HTML e encerramento do programa.</blockquote>
+            </div>
+            
+            <div id="text-box3" class="m-3 text-box mt-3 p-3 bg-light text-dark">
+                <p name="Mancha-Alvo" class="m-3 fw-bold fs-2">Mancha-Alvo</p>
+                <blockquote> O primeiro código foi desenvolvido para a colheita de Soja e tem como objetivo localizar a presença do fungo Mancha-Alvo. 
+                Utilizando técnicas de processamento de imagem, o código analisa imagens das folhas de Soja em busca de características visuais do fungo, permitindo a identificação precisa da doença.</blockquote>
+                <p class="m-3 fs-5 fw-bold">Como foi construído e por que utilizamos essas técnicas?</p>
+                <blockquote>Começamos o código com um loop para processar continuamente os quadros do vídeo ou câmera.</blockquote>
+                <cite>
+                    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) - Essa linha de código faz a conversão do espaço de cor do quadro BGR (Azul, Verde, Vermelho) para HSV (Matiz, Saturação, Valor), facilitando o processamento de cores.<br>
+                    Após isso definimos as faixas de cores para os sintomas da doença Mancha-Alvo, mostrado no relatório gerado pelo manchaalvo.py.<br>
+                    O sintoma Mancha-Alvo consistem em pontos escuros no meio e ao redor cria um halo de cor amarela.<br>
+                    Por isso definimos:<br>
+                    lower_circular_spot = np.array([0, 50, 50]) e upper_circular_spot = np.array([179, 255, 255]): para o ponto escuro<br>
+                    lower_yellow_halo = np.array([20, 50, 50]) e upper_yellow_halo = np.array([30, 255, 255]): para o halo de cor amarela.<br>                   
+                    Criamos duas máscaras para filtrar os sintomas da Mancha-Alvo utilizando as faixas de cores definidas.<br>
+                    mask_circular_spot = cv2.inRange(hsv, lower_circular_spot, upper_circular_spot); <br>
+                    mask_yellow_halo = cv2.inRange(hsv, lower_yellow_halo, upper_yellow_halo); <br>
+                    Após as máscaras ficarem prontas utilizamos a função cv2.bitwise_and()<br>
+                    mask_target_spot = cv2.bitwise_and(mask_circular_spot, mask_yellow_halo);
+                    Essa função combina as máscaras usando uma operação bitwise AND para obter uma máscara final que retém apenas os pixels que possuem as cores da mancha circular e do halo amarelo.<br>
+                    Aplicamos operações morfológicas afim de, melhorar a máscara:<br>
+                    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5)): cria um kernel em forma de elipse com tamanho 5x5.<br>
+                    mask_target_spot = cv2.morphologyEx(mask_target_spot, cv2.MORPH_CLOSE, kernel): aplica a operação de fechamento morfológico na máscara para preencher buracos e eliminar ruídos.<br>
+                    Após aplicarmos as técnicas de processamento de imagem, agora é feito os contornos na máscara final cv2.findContours().<br>
+                    Porém, em busca de desenhar os contornos encontrados com mais precisão utilizamos uma função arcLength()<br>
+                    epsilon = 0.03 * cv2.arcLength(contour, True): essa função calcula a precisão da aproximação do contorno com base em um percentual da circunferência do contorno.<br>
+                    approx = cv2.approxPolyDP(contour, epsilon, True): realiza uma aproximação poligonal no contorno original com base na precisão definida. <br>
+                    Assim, obtemos a detecção da doença Mancha-Alvo nas colheitas de Soja.<br>
+                </cite>
+                <p class="m-3 fs-5 fw-bold">Resumo</p>
+                <blockquote>Essas são as principais etapas do código, que envolvem a captura de quadros, conversão para o espaço de cores HSV, criação de máscaras, detecção de contornos, desenho dos contornos no quadro, exibição do resultado, cálculo da quantidade e tamanho das doenças, geração do relatório HTML e encerramento do programa.</blockquote>
+            </div>
+            <h2 class="m-3">Resumo</h2>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Importar as bibliotecas necessárias.<br>cv2: é a biblioteca OpenCV, utilizada para processamento de imagens e vídeos.<br>numpy: é uma biblioteca para cálculos numéricos em Python.</li>
+                <li class="list-group-item">Captura de vídeo ou imagens de câmeras, criação do loop para processar cada frame do vídeo.</li>
+                <li class="list-group-item">Converter o espaço de cores do frame para HSV.</li>
+                <li class="list-group-item">Definir as faixas de cores com base nos sintomas de cada doença.</li>
+                <li class="list-group-item">Criar as máscaras necessárias para filtrar os sintomas de cada doença.</li>
+                <li class="list-group-item">Caso utilize mais de uma máscara, fazer a combinação de máscaras para obter a máscara final.</li>
+                <li class="list-group-item">Aplique operações morfológicas para melhorar a máscara.</li>
+                <li class="list-group-item">Encontre os contornos na máscara.</li>
+                <li class="list-group-item">Desenhe os contornos encontrados, caso necessite de mais precisão faça o calculo da precisão da apromixamação do contorno com base do percentual da circunferência do contorno.</li>
+                <li class="list-group-item">Como dito a cima, no caso de necessidade de mais precisão finalize o desenho dos contornos com a realização de uma aproximação poligonal no contorno original com base na precisão definida.</li>
+                <li class="list-group-item">Exibe o frame resultante em uma janela chamada 'frame'</li>
+                <li class="list-group-item">Faça uma lógica para quando uma tecla x for pressionado encerre o loop.</li>
+                <li class="list-group-item">Fecha todas as janelas abertas e libera o objeto de captura de vídeo.</li>
+                <li class="list-group-item">Ao finalizar o loop faça a geração do relatório HTML que será utilizado para o cálculo de diminuição de danos das doenças encontradas.</li>
+
+              </ol>
+        </div>
+        
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleText(id) {
+            var textBoxes = document.getElementsByClassName('text-box');
+            for (var i = 0; i < textBoxes.length; i++) {
+                textBoxes[i].style.display = 'none';
+            }
+            var textBox = document.getElementById('text-box' + id);
+            textBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
